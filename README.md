@@ -1,1 +1,1 @@
-# Graphic-Editor
+# Raster-Graphics-Editor
