@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Raster_Graphics_Editor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Graphic Editor" Height="450" Width="800">
     <Grid>
-        <Menu Height="25" VerticalAlignment="Top" Margin="0 0 0 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="New File" ></MenuItem>
-                <MenuItem Header="Open File" ></MenuItem>
+                <MenuItem Header="New File" Click="NewFile"></MenuItem>
+                <MenuItem Header="Open File" Click="OpenFile"></MenuItem>
                 <MenuItem Header="Save" ></MenuItem>
                 <MenuItem Header="Save As" ></MenuItem>
                 <Separator />
@@ -36,15 +40,22 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Tools" >
-                <MenuItem Header="Pensil" ></MenuItem>
-                <MenuItem Header="Eraser" ></MenuItem>
-                <MenuItem Header="Text" ></MenuItem>
-                <MenuItem Header="Brush" ></MenuItem>
+                <MenuItem Header="Pencil" Click="ChooseTool"></MenuItem>
+                <MenuItem Header="Eraser" Click="ChooseTool"></MenuItem>
+                <MenuItem Header="Text" ToolTip="Color is set up in Panel 'Selected Color'" Click="ChooseTool">
+                    <MenuItem Header="Size" ></MenuItem>
+                    <MenuItem Header="Type" >
+                        <MenuItem Header="Bold" ></MenuItem>
+                        <MenuItem Header="Italic" ></MenuItem>
+                        <MenuItem Header="Underlined" ></MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Brush" Click="ChooseTool"></MenuItem>
             </MenuItem>
             <MenuItem Header="Figures" >
-                <MenuItem Header="Line" ></MenuItem>
-                <MenuItem Header="Rectangle" ></MenuItem>
-                <MenuItem Header="Ellipse" ></MenuItem>
+                <MenuItem Header="Line" Click="ChooseFigure"></MenuItem>
+                <MenuItem Header="Rectangle" Click="ChooseFigure"></MenuItem>
+                <MenuItem Header="Ellipse" Click="ChooseFigure"></MenuItem>
             </MenuItem>
             <MenuItem Header="Selected Color" >
                 <MenuItem Header="Color1" >
@@ -57,5 +68,8 @@
         IsSelectionRangeEnabled="True" ValueChanged="Slider_ValueChanged" />
             </MenuItem>
         </Menu>
+        <GroupBox Grid.Row="1" Header="Drawing Field" Name="groupBoxForDrawing" Background="Azure" MouseDown="groupBoxForDrawing_MouseDown" MouseUp="groupBoxForDrawing_MouseUp">
+            <Image Name="image1" />
+        </GroupBox>
     </Grid>
 </Window>
